@@ -19,3 +19,43 @@
   width: 8rem;
   object-fit: cover;
 }  */
+
+body {
+  /* margin: 20% auto; */
+}
+
+.container{
+  display: flex;
+  gap: 10px;
+  font-size: small;
+  margin: 10px 0;
+}
+
+.btn {
+  height: 30px;
+  width: 50px;
+}
+
+.d-btn {
+  height: 30px;
+  width: 50px;
+  margin-left: -270px;
+}
+
+.togglebtn {
+  margin-left: -192px;
+  margin-bottom: 10px;
+}
+
+.add {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 320px;
+  margin: 2rem auto;
+}
+
+
+/* .summary {
+  display: none;
+} */
