@@ -28,12 +28,13 @@ body {
   display: flex;
   gap: 10px;
   font-size: small;
-  margin: 10px 0;
+  margin: 10px 90px;
 }
 
 .btn {
   height: 30px;
   width: 50px;
+  margin: auto;
 }
 
 .d-btn {

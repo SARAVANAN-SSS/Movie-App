@@ -1,6 +1,10 @@
 import "./App.css";
 import {useState} from "react"
 import Movie from "./Movie";
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+
+
 
 export default function App() {
   const initialMovies=[{pic:"https://terrigen-cdn-dev.marvel.com/content/prod/1x/avengersendgame_lob_crd_05.jpg",nama:"The Avengers",rating:"8",summary:"Marvel's The Avengers (classified under the name Marvel Avengers Assemble in the United Kingdom and Ireland), or simply The Avengers, is a 2012 American superhero film based on the Marvel Comics superhero team of the same name"},
@@ -22,11 +26,11 @@ export default function App() {
   return (
     <div>
     <div className="add">
-        <input className="mname" onChange={(e)=>setNama(e.target.value)} placeholder="Enter Movie Name" />
-        <input className="mpic" onChange={(e)=>setPic(e.target.value)} placeholder="Enter Movie Pic Url" />
-        <input className="mrating" onChange={(e)=>setRating(e.target.value)} placeholder="Enter Movie rating" />
-        <input className="msummary" onChange={(e)=>setSummary(e.target.value)} placeholder="Enter Movie Summary" />
-        <button onClick={()=>{
+        <TextField varient="contained" className="mt" onChange={(e)=>setNama(e.target.value)} placeholder="Enter Movie Name" />
+        <TextField varient="contained" className="mt" onChange={(e)=>setPic(e.target.value)} placeholder="Enter Movie Pic Url" />
+        <TextField varient="contained" className="mt" onChange={(e)=>setRating(e.target.value)} placeholder="Enter Movie rating" />
+        <TextField varient="contained" className="mt" onChange={(e)=>setSummary(e.target.value)} placeholder="Enter Movie Summary" />
+        <Button variant="contained" onClick={()=>{
         const newMovie = {
           nama,
           pic,
@@ -36,7 +40,7 @@ export default function App() {
         console.log(newMovie)
         setMovieList([...initialMovies,newMovie])
         }
-        }>Add Movie</button>
+        }>Add Movie</Button>
         </div>
         <div className="app">
     {/* <AddColor /> */}

@@ -3,6 +3,8 @@ import "./Movie.css"
 import "./App.css"
 import { useState } from "react"
 import { Counter } from "./Counter"
+import Button from '@mui/material/Button';
+
 
 export default function Movie({pic,nama,rating,summary}) {
 
@@ -26,11 +28,11 @@ export default function Movie({pic,nama,rating,summary}) {
     <h2>{nama}</h2>
     <p style={styles}>⭐{rating}</p>
     </div>
-    <button onClick={()=>setShow(!show)} className="togglebtn">Toggle Description</button>
+    <Button varient="contained" onClick={()=>setShow(!show)} className="togglebtn">Toggle Description</Button>
     <p style={styles1} className="summary">{summary}</p>
     {/* {show?<p className="summary">{summary}</p>:""} */}
     <Counter />
-    <button className="d-btn" onClick={() => setState(false)}>Delete</button>
+    <Button varient="contained" className="d-btn" onClick={() => setState(false)}>Delete</Button>
 
     </div>
 )
