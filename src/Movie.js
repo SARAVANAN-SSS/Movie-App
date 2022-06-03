@@ -4,6 +4,10 @@ import "./App.css"
 import { useState } from "react"
 import { Counter } from "./Counter"
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import InfoIcon from '@mui/icons-material/Info';
+
 
 
 export default function Movie({pic,nama,rating,summary}) {
@@ -28,11 +32,11 @@ export default function Movie({pic,nama,rating,summary}) {
     <h2>{nama}</h2>
     <p style={styles}>⭐{rating}</p>
     </div>
-    <Button varient="contained" onClick={()=>setShow(!show)} className="togglebtn">Toggle Description</Button>
+    <Button varient="contained" onClick={()=>setShow(!show)} className="togglebtn"><InfoIcon /> Toggle Description</Button>
     <p style={styles1} className="summary">{summary}</p>
     {/* {show?<p className="summary">{summary}</p>:""} */}
     <Counter />
-    <Button varient="contained" className="d-btn" onClick={() => setState(false)}>Delete</Button>
+    <IconButton color="error" className="d-btn" onClick={() => setState(false)}> <DeleteIcon /></IconButton>
 
     </div>
 )
