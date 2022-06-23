@@ -7,21 +7,8 @@
   justify-items: center;
 }
 
-/* img {
-  height: 8rem;
-  width: 8rem;
-  border-radius: 50%;
-  object-fit: cover;
-} */
-
-/* img {
-  height: 8rem;
-  width: 8rem;
-  object-fit: cover;
-}  */
-
-body {
-  /* margin: 20% auto; */
+.route-container{
+  padding:2rem;
 }
 
 .container{

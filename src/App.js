@@ -1,13 +1,16 @@
 import "./App.css";
 import {useState} from "react"
-import {Switch,Link,Route,Redirect} from "react-router-dom"
-import { color } from "@mui/system";
+import {Switch,Link,Route,Redirect, useHistory} from "react-router-dom"
 import { MovieDetails } from "./MovieDetails";
 import { Notfound } from "./Notfound";
 import { AddMovie } from "./AddMovie";
 import { Moviepage } from "./Moviepage";
 import { Home } from "./Home";
 import { AddColor } from "./AddColor";
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
+
 
 export default function App() {
   const initialMovies=[{pic:"https://terrigen-cdn-dev.marvel.com/content/prod/1x/avengersendgame_lob_crd_05.jpg",nama:"The Avengers",rating:"8",summary:"Marvel's The Avengers (classified under the name Marvel Avengers Assemble in the United Kingdom and Ireland), or simply The Avengers, is a 2012 American superhero film based on the Marvel Comics superhero team of the same name",trailer : "https://www.youtube.com/embed/6ZfuNTqbHE8"},
@@ -20,35 +23,24 @@ export default function App() {
 },
   ]
   const [movieList,setMovieList] = useState(initialMovies)
+  const history = useHistory()
 
   // const names = [
   //   {pic:"https://1.bp.blogspot.com/-qES8XCPCoMs/YPenPwxubUI/AAAAAAAAFdg/txOuXwSLWGQLT-QGAh98a-8m26UjMU9XQCLcBGAsYHQ/w1600/20210721_101605.jpg",name:"Mani"},{pic:"https://media.istockphoto.com/vectors/profile-picture-vector-illustration-vector-id587805156?s=170667a",name:"Vani"},{pic:"https://bestprofilepictures.com/wp-content/uploads/2021/04/Cool-Image.jpg",name:"Rani"}]
   return (
     <div>
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/ColorGame">Color Game</Link>
-        </li>
-        <li>
-          <Link to="/Movies">Movie</Link>
-        </li>
-        <li>
-          <Link to="/Films">Films</Link>
-        </li>
-        <li>
-          <Link to="/Movies/Add">Add Movie</Link>
-        </li>
-        <li>
-          <Link to="/TicTacToe">TicTacToe</Link>
-        </li>
-      </ul>
-    </nav>
-
-    <Switch>
+    <AppBar position="static">
+        <Toolbar>
+        <Button color="inherit" onClick={()=>{ history.push("/")}}> Home </Button>
+        <Button color="inherit" onClick={()=>{ history.push("/ColorGame")}}> Color Game </Button>
+        <Button color="inherit" onClick={()=>{ history.push("/Movies")}}> Movie </Button>
+        <Button color="inherit" onClick={()=>{ history.push("/Films")}}> Films </Button>
+        <Button color="inherit" onClick={()=>{ history.push("/Movies/Add")}}> Add Movie </Button>
+        <Button color="inherit" onClick={()=>{ history.push("/TicTacToe")}}> TicTacToe </Button>
+        </Toolbar>
+        </AppBar>
+      <section className="route-container">
+      <Switch>
       <Route exact path="/"><Home /></Route>
       <Route path="/ColorGame"><AddColor /></Route>
       <Route path="/TicTacToe"><TicTacToe /></Route>
@@ -58,6 +50,7 @@ export default function App() {
       <Route path="/Films"><Redirect to ="/Movies" /></Route>
       <Route path="**"><Notfound /></Route>
     </Switch>
+    </section>
     </div>
   );
 }
