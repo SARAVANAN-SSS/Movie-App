@@ -1,13 +1,13 @@
 import "./App.css";
 import {useState} from "react"
-import Movie from "./Movie";
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import {Switch,Link,Route,Redirect} from "react-router-dom"
-import { useHistory,useParams } from "react-router-dom";
 import { color } from "@mui/system";
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { MovieDetails } from "./MovieDetails";
+import { Notfound } from "./Notfound";
+import { AddMovie } from "./AddMovie";
+import { Moviepage } from "./Moviepage";
+import { Home } from "./Home";
+import { AddColor } from "./AddColor";
 
 export default function App() {
   const initialMovies=[{pic:"https://terrigen-cdn-dev.marvel.com/content/prod/1x/avengersendgame_lob_crd_05.jpg",nama:"The Avengers",rating:"8",summary:"Marvel's The Avengers (classified under the name Marvel Avengers Assemble in the United Kingdom and Ireland), or simply The Avengers, is a 2012 American superhero film based on the Marvel Comics superhero team of the same name",trailer : "https://www.youtube.com/embed/6ZfuNTqbHE8"},
@@ -49,128 +49,17 @@ export default function App() {
     </nav>
 
     <Switch>
+      <Route exact path="/"><Home /></Route>
       <Route path="/ColorGame"><AddColor /></Route>
       <Route path="/TicTacToe"><TicTacToe /></Route>
       <Route path="/Movies/Add"><AddMovie movieList={movieList} setMovieList={setMovieList} initialMovies={initialMovies} /></Route>
       <Route path="/Movies/:id"><MovieDetails movieList={movieList} /></Route>
       <Route path="/Movies"><Moviepage movieList={movieList} /></Route>
       <Route path="/Films"><Redirect to ="/Movies" /></Route>
-      <Route path="/"><Home /></Route>
       <Route path="**"><Notfound /></Route>
     </Switch>
     </div>
   );
-}
-
-function MovieDetails({ movieList }) {
-  const {id} = useParams();
-  const movie = movieList[id]
-  const history = useHistory( )
-  return(
-    <div>
-      title {id}
-      <br /><br />
-      <iframe width="727" height="409" src={movie.trailer} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      <div className="second">
-    <h2>{movie.nama}</h2>
-    <p>⭐{movie.rating}</p>
-    </div>
-    <p>{movie.summary}</p>
-
-    <Button variant="outlined" onClick={()=>{history.goBack()}} > <ArrowBackIosIcon />Back </Button>
-    <Button variant="outlined" onClick={()=>{history.goForward()}} > Forward <ArrowForwardIosIcon /> </Button>
-
-    </div>
-  )
-}
-
-
-
-
-function Notfound() {
-  return(
-    <h1>404 page not found</h1>
-  )
-}
-
-
-function AddMovie({movieList,initialMovies,setMovieList}) {
-    const [nama,setNama] = useState("")
-    const [pic,setPic] = useState("")
-    const [rating,setRating] = useState("")
-    const [summary,setSummary] = useState("")
-    const history = useHistory();
-
-  return(
-    <div>
-    <div className="add">
-        <TextField varient="standard" className="mt" onChange={(e)=>setNama(e.target.value)} label="Enter Movie Name" />
-        <TextField varient="standard" className="mt" onChange={(e)=>setPic(e.target.value)} label="Enter Movie Pic Url" />
-        <TextField varient="standard" className="mt" onChange={(e)=>setRating(e.target.value)} label="Enter Movie rating" />
-        <TextField varient="standard" className="mt" onChange={(e)=>setSummary(e.target.value)} label="Enter Movie Summary" />
-        <Button variant="contained" onClick={()=>{
-        const newMovie = {
-          nama,
-          pic,
-          rating,
-          summary
-        }
-        console.log(newMovie)
-        setMovieList([...initialMovies,newMovie])
-        history.push("/Movies")
-        }
-        }>Add Movie</Button>
-        </div>
-    </div>
-
-  )
-}
-
-
-function Moviepage({movieList}) {
-  return(
-    <div className="app">
-    {/* <AddColor /> */}
-    {movieList.map(({pic,nama,rating,summary},index)=><Movie index={index} pic={pic} nama={nama} rating={rating} summary={summary} />)}
-      {/* {names.map(({pic,name})=><Show pic={pic} name={name} />)} */}
-    </div>
-  )
-}
-
-
-
-
-function Home() {
-  return(
-    <h1>Welcome to My React World</h1>
-  )
-}
-
-
-function AddColor() {
-  const [color,setColor] = useState("red")
-  const styles = {backgroundColor:color}
-  const [colorList,setColorList] = useState(["pink","yellow","green"])
-  return(
-    <div>
-      <input value={color} onChange={(event)=> setColor(event.target.value) } style={styles} placeholder="Pick the Color" name="value" />
-      <button onClick={()=>setColorList([...colorList,color])}>Add Color</button>
-      {colorList.map((clr)=><ColorBox clr={clr} />)}
-    </div>
-  )
-}
-
-
-function ColorBox({clr}) {
-  const styles1={
-    height:"20px",
-    width:"250px",
-    backgroundColor:clr,
-    marginTop:"10px"
-  }
-  return(
-    <div style={styles1}></div>
-  )
 }
 
 function TicTacToe() {
